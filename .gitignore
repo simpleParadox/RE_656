@@ -1,2 +1,6 @@
 dataset/
 .idea/
+opennre.egg-info/
+OpenNRE/
+dataverse_files/
+dist/
