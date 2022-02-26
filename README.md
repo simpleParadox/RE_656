@@ -39,5 +39,6 @@ TODO:
 - [ ] Add command line arguments to run different cases (for example: load pretrained proposed model to predict relations, retrain proposed model from scratch with validation etc., also provide options for providing different architecture hyperparamters - different number of conv filters, different LSTM units (but also have a default option)).
 
 
-
+### Questions
+- [ ] Fine-tuning BERT provides slight acc benefit on val data but this may be important if the dataset is huge - translates to many more relations.
 
