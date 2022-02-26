@@ -18,8 +18,7 @@ class LSTM(nn.Module):
             hidden_size /= 2
         self.lstm = nn.LSTM(input_size, 
                           hidden_size, 
-                          num_layers, 
-                          nonlinearity=activation_function, 
+                          num_layers,
                           dropout=dropout, 
                           bidirectional=bidirectional)
 
@@ -32,6 +31,8 @@ class LSTM(nn.Module):
         """
         # Check size of tensors
         x = x.transpose(0, 1) # (L, B, I_EMBED)
-        x, h, c = self.lstm(x) # (L, B, H_EMBED)
+        output = self.lstm(x) # (L, B, H_EMBED)
+	  print(output)
+	  x, h, c = output
         x = x.transpose(0, 1) # (B, L, I_EMBED)
         return x
