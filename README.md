@@ -24,9 +24,13 @@ python main.py
 ```
 
 ### Results
-| CNN filters  |  LSTM Units | BERT | Test Accuracy  |
-| 16  |  4 | Pretrained  | ---|
-|  8 |  2 |  Pretrained |--- |
+
+| CNN Filters | LSTM Units | BERT       | Test Accuracy |
+|:-----------:|:----------:|:----------:|:-------------:|
+| 16          | 4          | Pretrained |               |
+| 8           | 2          | Pretrained |               |
+|             |            |            |               |
+
 
 
 
