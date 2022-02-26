@@ -2,9 +2,31 @@
 
 
 ### This repo contains the code for our project in CMPUT 656.
+Relation Extraction using Convolution and Memory Networks.
+The inputs to the models are the entities obtained from the table. The output is an embedding which is fed to a softmax layer for multi-class classification.
 <<Provide description for the project. E.g., inputs, ouputs, methods, etc.>>
 
 
+### Install the following packages.
+1. Tensorflow >=2.5.0
+2. sentencepiece
+3. TensorflowHub
+
+The packages are in addition to the generic python data science stack (numpy, scipy, pandas etc.).
+
+Follow pip installation guidelines. If using Anaconda package manager, use conda to install packages, but generally pip should work.
+
 ### Instructions to run the code.
 
-<<TODO>>
+Run main.py as follows.
+```
+python main.py
+```
+
+TODO: 
+1. Refractor code to have the preprocessing steps in a separate python file and the keras model in the main.py only.
+2. Add command line arguments to run different cases (for example: load pretrained proposed model to predict relations, retrain proposed model from scratch with validation etc., also provide options for providing different architecture hyperparamters - different number of conv filters, different LSTM units (but also have a default option)).
+
+
+
+
