@@ -5,7 +5,6 @@ OpenNRE/
 dataverse_files/
 dist/
 .ipynb_checkpoints/
-CMPUT_656_Project.ipynb
 Processed_Input.tsv
 __pycache__/
 opennre_lstm.py
