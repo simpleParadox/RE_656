@@ -23,9 +23,16 @@ Run main.py as follows.
 python main.py
 ```
 
+### Results
+| CNN filters  |  LSTM Units | BERT | Test Accuracy  |
+| 16  |  4 | Pretrained  | ---|
+|  8 |  2 |  Pretrained |--- |
+
+
+
 TODO: 
-1. Refractor code to have the preprocessing steps in a separate python file and the keras model in the main.py only.
-2. Add command line arguments to run different cases (for example: load pretrained proposed model to predict relations, retrain proposed model from scratch with validation etc., also provide options for providing different architecture hyperparamters - different number of conv filters, different LSTM units (but also have a default option)).
+- [ ] Refractor code to have the preprocessing steps in a separate python file and the keras model in the main.py only.
+- [ ] Add command line arguments to run different cases (for example: load pretrained proposed model to predict relations, retrain proposed model from scratch with validation etc., also provide options for providing different architecture hyperparamters - different number of conv filters, different LSTM units (but also have a default option)).
 
 
 
