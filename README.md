@@ -41,4 +41,4 @@ TODO:
 
 ### Questions
 - [ ] Fine-tuning BERT provides slight acc benefit on val data but this may be important if the dataset is huge - translates to many more relations.
-
+- Try without fine-tuning as well.
