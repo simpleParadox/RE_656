@@ -4,11 +4,10 @@
 # In[1]:
 
 
-import numpy as np 
 import pandas as pd
 import os
+import argparse
 import numpy as np
-from keras.callbacks import Callback
 from sklearn.metrics import confusion_matrix, f1_score, precision_score, recall_score
 
 
@@ -29,6 +28,12 @@ from sklearn.metrics import f1_score
 
 # In[3]:
 
+# Parse arguments here.
+parser = argparse.ArgumentParser(description="Relation Extraction model that takes in wikipedia tables entity and finds relations between them.\n" \
+                                             "The model uses a CNN to encode input entities and surrounding table information followed by an" \ 
+                                             "LSTM/BiLSTM to learn dependencies among words in the input.")
+parser.add_argument('model_lstm', metavar='lstm', type=str)
+parser.add_argument("")
 
 
 # In[4]:
@@ -178,7 +183,8 @@ def get_labels(y_pred):
 # In[ ]:
 
 
-with tf.device('/device:GPU:0'):
+with tf.device(device_name):
+    print(f"Training on {device_name}.")
     splits = 5 # For five fold cross-validation.
 #     seeds = [i for i in range(splits)]  # Fix the seed value for reproducibility.
     seeds = [2]
