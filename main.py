@@ -224,7 +224,7 @@ with tf.device(device_name):
             train_labels = y_train
             x_val = bert_encode(x_val, tokenizer, max_len=max_len)
 
-
+            # Change the LSTM to BiLSTM by setting bidirectional=True.
             model = build_model(bert_layer, max_len=max_len, bidirectional=True)
             model.summary()
             #checkpoint = tf.keras.callbacks.ModelCheckpoint('model.h5', monitor='val_accuracy', save_best_only=True, verbose=1)
@@ -282,7 +282,7 @@ with tf.device(device_name):
 # In[ ]:
 
 
-print(f1_val)
+# print(f1_val)
 
 
 # In[19]:
