@@ -134,8 +134,13 @@ def bert_encode(texts, tokenizer, max_len=512):
 
 # In[14]:
 
+def build_model_bilstm(bert_layer, max_len=512):
+    """
+    The
+    """
 
-def build_model(bert_layer, max_len=512):
+
+def build_model(bert_layer, max_len=512, bidirectional=False):
     input_word_ids = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="input_word_ids")
     input_mask = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="input_mask")
     segment_ids = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="segment_ids")
@@ -148,7 +153,14 @@ def build_model(bert_layer, max_len=512):
     
     lay = tf.keras.layers.Conv1D(filters=8, kernel_size=5, strides=1, padding="same", activation="relu")(clf_output)
     lay = tf.keras.layers.MaxPooling1D(2, 2)(lay)
-    lay = tf.keras.layers.LSTM(2, return_sequences=True, dropout=0.2)(lay)
+    if bidirectional:
+        forward_lstm = tf.keras.layers.LSTM(2, return_sequences=True, dropout=0.2)(lay)
+        backward_lstm = tf.keras.layers.LSTM(2, return_sequences=True, dropout=0.2, go_backwards=True)(lay)
+
+        # NOTE: The backward_layer is an optional argument. If not supplied, the forward_lstm layer will be automatically used as a backward layer with go_backwards=True
+        lay = tf.keras.layers.Bidirectional(forward_lstm, backward_layer=backward_lstm)
+    else:
+        lay = tf.keras.layers.LSTM(2, return_sequences=True, dropout=0.2)(lay)
     lay = tf.keras.layers.Flatten()(lay)
     out = tf.keras.layers.Dense(6, activation='softmax')(lay)
     
@@ -213,7 +225,7 @@ with tf.device(device_name):
             x_val = bert_encode(x_val, tokenizer, max_len=max_len)
 
 
-            model = build_model(bert_layer, max_len=max_len)
+            model = build_model(bert_layer, max_len=max_len, bidirectional=True)
             model.summary()
             #checkpoint = tf.keras.callbacks.ModelCheckpoint('model.h5', monitor='val_accuracy', save_best_only=True, verbose=1)
             checkpoint = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path, save_weights_only=True, verbose=1)
