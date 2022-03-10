@@ -134,10 +134,32 @@ def bert_encode(texts, tokenizer, max_len=512):
 
 # In[14]:
 
-def build_model_bilstm(bert_layer, max_len=512):
+def build_model_erin(bert_layer, max_len=512):
     """
-    The
+    This model is for comparing Erin's model with the single LSTM unit.
     """
+    input_word_ids = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="input_word_ids")
+    input_mask = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="input_mask")
+    segment_ids = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="segment_ids")
+
+    pooled_output, sequence_output = bert_layer([input_word_ids, input_mask, segment_ids])
+
+    clf_output = sequence_output[:, :, :]
+
+
+    # lay = tf.keras.layers.Conv1D(filters=8, kernel_size=5, strides=1, padding="same", activation="relu")(clf_output)
+    # lay = tf.keras.layers.MaxPooling1D(2, 2)(lay)
+    lay = tf.keras.layers.LSTM(1, return_sequences=True, dropout=0.2)(clf_output)
+    lay = tf.keras.layers.Flatten()(lay)
+    out = tf.keras.layers.Dense(6, activation='softmax')(lay)
+
+    model = tf.keras.models.Model(inputs=[input_word_ids, input_mask, segment_ids], outputs=out)
+    # model.compile(tf.keras.optimizers.Adam(lr=2e-5), loss='categorical_crossentropy', metrics=['accuracy'])
+    model.compile(tf.keras.optimizers.Adam(lr=2e-5), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+    return model
+
+
 
 
 def build_model(bert_layer, max_len=512, bidirectional=False):
