@@ -387,6 +387,7 @@ if args['pretrained']:
     for k, v in label_mappings.items():
         print(k, v)
 
+    #mapping each relations to unique integer labels    
     reduced_label_mappings = {
         0: 'None',
         1: 'award=nominee',
@@ -512,9 +513,7 @@ if args['demo']:
         out = tf.keras.layers.Dense(29, activation='softmax')(lay)
 
         model = tf.keras.models.Model(inputs=[input_word_ids, input_mask, segment_ids], outputs=out)
-        #model.compile(tf.keras.optimizers.Adam(lr=2e-5), loss='categorical_crossentropy', metrics=['accuracy'])
         model.compile(tf.keras.optimizers.Adam(lr=2e-5), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-        #model.compile(tf.keras.optimizers.RMSprop(lr=0.001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
         return model
 
