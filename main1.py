@@ -231,6 +231,12 @@ if args['pretrained'] == False:
 
 
     """# Do not run the following cell if using checkpointed files."""
+    
+    """
+    Perform evaluation using Monte-carlo CV;
+    model was tested on 5 different seeds and all metrics were averaged across seeds for reporting final results;
+    model hyperparameters was tuned using 5 fold CV on development set (20% of training set)
+    """
 
     with tf.device(device_name):
         splits = 5 # For five fold cross-validation.
@@ -283,6 +289,7 @@ if args['pretrained'] == False:
             #     fold_count += 1
 
             #encode whole train data
+            #specify max length parameters for our models
             max_len = 80
             print("Encoding input through BERT encoder.")
             train_input = bert_encode(x_t, tokenizer, max_len=max_len)
@@ -294,8 +301,11 @@ if args['pretrained'] == False:
             elif args['model'] =='comemnet-lstm':
                 model = build_model_comemnet_lstm(bert_layer, max_len=max_len)
             elif args['model'] == 'erin':
-                model = build_model_erin(bert_layer, max_len=max_len)
+                #macdonald and Barbosa considered 50 max length for their proposed model
+                #we preserve their reported hyperparameters for replicating their results
+                model = build_model_erin(bert_layer, max_len=50)
             model.summary()
+            
             #checkpoint = tf.keras.callbacks.ModelCheckpoint('model.h5', monitor='val_accuracy', save_best_only=True, verbose=1)
             checkpoint = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path, save_weights_only=True, verbose=1)
             earlystopping = tf.keras.callbacks.EarlyStopping(monitor='val_accuracy', patience=5, verbose=1)
