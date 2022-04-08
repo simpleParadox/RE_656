@@ -83,6 +83,7 @@ def get_labels(y_pred):
     return y_pred_label
 
 
+#if pretrained is set to False, then initialize a new model and train it
 if args['pretrained'] == False:
     print("Retraining model from scratch.")
     print("Loading bert from TensorFlow-Hub, this may take a while... Please be patient.")
@@ -117,24 +118,31 @@ if args['pretrained'] == False:
 
 
     def build_model_erin(bert_layer, max_len=512):
+        """
+        This method reimplements Macdonald and Barbosa's model;
+        Use the reported parameters from their paper to ensure fair comparison;
+        Returns model object
+        
+        bert_layer -- specifies the pretrained BERT layer for generating embedding vectors
+        max_len --  specifies maximum length of input tokens for BERT layer
+        """
         input_word_ids = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="input_word_ids")
         input_mask = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="input_mask")
         segment_ids = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="segment_ids")
 
         pooled_output, sequence_output = bert_layer([input_word_ids, input_mask, segment_ids])
 
-        print(tf.shape(sequence_output))
+        #print(tf.shape(sequence_output))
         clf_output = sequence_output[:, :, :]
-        print(tf.shape(clf_output))
+        #print(tf.shape(clf_output))
 
-        #     lay = tf.keras.layers.Conv1D(filters=8, kernel_size=5, strides=1, padding="same", activation="relu")(clf_output)
-        #     lay = tf.keras.layers.MaxPooling1D(2, 2)(lay)
+        #build model with one LSTM layer, followed by fully connected and softmax layers        
         lay = tf.keras.layers.LSTM(1, return_sequences=True)(clf_output)
         lay = tf.keras.layers.Flatten()(lay)
         out = tf.keras.layers.Dense(29, activation='softmax')(lay)
 
         model = tf.keras.models.Model(inputs=[input_word_ids, input_mask, segment_ids], outputs=out)
-        # model.compile(tf.keras.optimizers.Adam(lr=2e-5), loss='categorical_crossentropy', metrics=['accuracy'])
+        #utilize RMSProp optimizer as reported by Macdonald and Barbosa
         model.compile(tf.keras.optimizers.RMSprop(lr=0.001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
         return model
