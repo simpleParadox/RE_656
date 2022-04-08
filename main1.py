@@ -250,7 +250,7 @@ if args['pretrained'] == False:
 
             #encode whole train data
             max_len = 80
-            print("Encoding model")
+            print("Encoding input through BERT encoder.")
             train_input = bert_encode(x_t, tokenizer, max_len=max_len)
             train_labels = y_t
 
@@ -525,6 +525,7 @@ if args['demo']:
     new_model.load_weights(checkpoint_path)
 
     def predict_relation(sentence):
+        print("Encoding input through BERT encoder.")
         test_input = bert_encode(np.array([sentence]), tokenizer, max_len=max_len)
         y_pred = new_model.predict(test_input, batch_size=16, verbose=1)
         y_pred_label = get_labels(y_pred)
