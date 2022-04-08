@@ -148,6 +148,14 @@ if args['pretrained'] == False:
         return model
 
     def build_model_comemnet_lstm(bert_layer, max_len=512):
+        """
+        This method implements our baseline model;
+        baseline model comprises of a CNN layer and an LSTM layer;
+        Returns model object
+        
+        bert_layer -- specifies the pretrained BERT layer for generating embedding vectors
+        max_len --  specifies maximum length of input tokens for BERT layer
+        """
         input_word_ids = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="input_word_ids")
         input_mask = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="input_mask")
         segment_ids = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="segment_ids")
@@ -155,21 +163,20 @@ if args['pretrained'] == False:
         pooled_output, sequence_output = bert_layer([input_word_ids, input_mask, segment_ids])
         # np.savez_compressed(f"bert_sequence_op_seed_{seed}.npz", sequence_output)
 
-        print(tf.shape(sequence_output))
+        #print(tf.shape(sequence_output))
         clf_output = sequence_output[:, :, :]
-        print(tf.shape(clf_output))
+        #print(tf.shape(clf_output))
 
+        #Build model with one CNN layer with 8 filters and one LSTM layer with 8 hidden units        
         lay = tf.keras.layers.Conv1D(filters=8, kernel_size=5, strides=1, padding="same", activation="relu")(clf_output)
         lay = tf.keras.layers.MaxPooling1D(2, 2)(lay)
         lay = tf.keras.layers.LSTM(8, return_sequences=True, dropout=0.2)(lay)
-        # lay = tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(8, return_sequences=True, dropout=0.2))(lay)
         lay = tf.keras.layers.Flatten()(lay)
         out = tf.keras.layers.Dense(29, activation='softmax')(lay)
 
         model = tf.keras.models.Model(inputs=[input_word_ids, input_mask, segment_ids], outputs=out)
-        # model.compile(tf.keras.optimizers.Adam(lr=2e-5), loss='categorical_crossentropy', metrics=['accuracy'])
+        #Use sparse categorical crossentropy as output labels are defined as integer values
         model.compile(tf.keras.optimizers.Adam(lr=2e-5), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-        # model.compile(tf.keras.optimizers.RMSprop(lr=0.001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
         return model
 
