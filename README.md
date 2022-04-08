@@ -24,6 +24,7 @@ pip install pandas
 pip install numpy
 python -m pip install -U matplotlib
 pip install seaborn
+pip install -U scikit-learn
 ```
 
 1. Tensorflow >=2.5.0
