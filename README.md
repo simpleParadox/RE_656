@@ -35,6 +35,7 @@ python main.py
 | Learning Rate               | 2e-5     | 0.001                        |
 | Dropout (for LSTM / BiLSTM) | 0.2      | None                         |
  
+ 
 ### Trainable parameters comparison
 
 | Model                                | Parameters |
@@ -43,7 +44,9 @@ python main.py
 | CNN + LSTM (CoMemNet - LSTM)         | 40,581     |
 | CNN + BiLSTM  (CoMemNet - BiLSTM)    | 50,405     |
 | BiLSTM only                          | 86,877     |
-*Reimpleted for fair comparison.
+
+
+\* Reimpleted for fair comparison.
 
 
 
@@ -57,7 +60,8 @@ Results shown for 5 seeds.
 | CoMemNet-LSTM               | 97.51%   | 95.41% | 29 (Max 500)         | 6      |
 | CoMemNet-BiLSTM             | 97.89%   | 96.03% | 29 (Max 500)         | 6      |
 | BiLSTM (8 units)            | 98.97%   | 97.97% | 29 (Max 500)         | 6      |
-*Reimpleted for fair comparison.
+
+\* Reimpleted for fair comparison.
 
 
 ~~TODO:
