@@ -62,13 +62,3 @@ Results shown for 5 seeds.
 | BiLSTM (8 units)            | 98.97%   | 97.97% | 29 (Max 500)         | 6      |
 
 \* Reimpleted for fair comparison.
-
-
-~~TODO:
-- [ ]Refractor code to have the preprocessing steps in a separate python file and the keras model in the main.py only.
-- [ ] Add command line arguments to run different cases (for example: load pretrained proposed model to predict relations, retrain proposed model from scratch with validation etc., also provide options for providing different architecture hyperparamters - different number of conv filters, different LSTM units (but also have a default option)).
-- [ ] Calculate F1 score on the test data.~~
-
-~~### Questions
-- [ ] Fine-tuning BERT provides slight acc benefit on val data but this may be important if the dataset is huge - translates to many more relations.
-- Try without fine-tuning as well.~~
