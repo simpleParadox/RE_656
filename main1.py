@@ -291,9 +291,14 @@ if args['pretrained'] == False:
             #encode whole train data
             #specify max length parameters for our models
             max_len = 80
+            erin_max_len = 50
             print("Encoding input through BERT encoder.")
-            train_input = bert_encode(x_t, tokenizer, max_len=max_len)
-            train_labels = y_t
+            if args['model'] == 'erin':
+                train_input = bert_encode(x_t, tokenizer, max_len=erin_max_len)
+                train_labels = y_t
+            else:
+                train_input = bert_encode(x_t, tokenizer, max_len=max_len)
+                train_labels = y_t
 
             #train model on whole train data
             if args['model'] == "comemnet-bilstm":
@@ -303,7 +308,8 @@ if args['pretrained'] == False:
             elif args['model'] == 'erin':
                 #macdonald and Barbosa considered 50 max length for their proposed model
                 #we preserve their reported hyperparameters for replicating their results
-                model = build_model_erin(bert_layer, max_len=50)
+                model = build_model_erin(bert_layer, max_len=erin_max_len)
+            
             model.summary()
             
             #checkpoint = tf.keras.callbacks.ModelCheckpoint('model.h5', monitor='val_accuracy', save_best_only=True, verbose=1)
@@ -318,7 +324,10 @@ if args['pretrained'] == False:
             verbose=1)
 
             #encode test data
-            test_input = bert_encode(x_test, tokenizer, max_len=max_len)
+            if args['model'] == 'erin':            
+                test_input = bert_encode(x_test, tokenizer, max_len=erin_max_len)
+            else:
+                test_input = bert_encode(x_test, tokenizer, max_len=max_len)
 
             # Evaluate the model on the test data using `evaluate`
             print("Evaluating on test data for ", seed)
