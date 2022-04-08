@@ -173,7 +173,7 @@ if args['pretrained'] == False:
         clf_output = sequence_output[:, :, :]
         #print(tf.shape(clf_output))
 
-        #Build model with one CNN layer with 8 filters and one LSTM layer with 8 hidden units        
+        #build model with one CNN layer with 8 filters and one LSTM layer with 8 hidden units        
         lay = tf.keras.layers.Conv1D(filters=8, kernel_size=5, strides=1, padding="same", activation="relu")(clf_output)
         lay = tf.keras.layers.MaxPooling1D(2, 2)(lay)
         lay = tf.keras.layers.LSTM(8, return_sequences=True, dropout=0.2)(lay)
@@ -181,13 +181,21 @@ if args['pretrained'] == False:
         out = tf.keras.layers.Dense(29, activation='softmax')(lay)
 
         model = tf.keras.models.Model(inputs=[input_word_ids, input_mask, segment_ids], outputs=out)
-        #Use sparse categorical crossentropy as output labels are defined as integer values
+        #use sparse categorical crossentropy as output labels are defined as integer values
         model.compile(tf.keras.optimizers.Adam(lr=2e-5), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
         return model
 
 
     def build_model_comemnet_bilstm(bert_layer, max_len=512):
+        """
+        This method is an improvement over our baseline;
+        improved model includes a CNN and BiLSTM network;
+        Returns model object
+        
+        bert_layer -- specifies the pretrained BERT layer for generating embedding vectors
+        max_len --  specifies maximum length of input tokens for BERT layer
+        """
         input_word_ids = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="input_word_ids")
         input_mask = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="input_mask")
         segment_ids = tf.keras.Input(shape=(max_len,), dtype=tf.int32, name="segment_ids")
@@ -199,17 +207,16 @@ if args['pretrained'] == False:
         clf_output = sequence_output[:, :, :]
         # print(tf.shape(clf_output))
 
+        #improve our baseline model by adding BiLSTM layer for modeling dependencies in both directions        
         lay = tf.keras.layers.Conv1D(filters=8, kernel_size=5, strides=1, padding="same", activation="relu")(clf_output)
         lay = tf.keras.layers.MaxPooling1D(2, 2)(lay)
-        #lay = tf.keras.layers.LSTM(2, return_sequences=True, dropout=0.2)(lay)
+        #implement dropout to prevent overfitting and ensure generalizability 
         lay = tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(8, return_sequences=True, dropout=0.2))(lay)
         lay = tf.keras.layers.Flatten()(lay)
         out = tf.keras.layers.Dense(29, activation='softmax')(lay)
 
         model = tf.keras.models.Model(inputs=[input_word_ids, input_mask, segment_ids], outputs=out)
-        #model.compile(tf.keras.optimizers.Adam(lr=2e-5), loss='categorical_crossentropy', metrics=['accuracy'])
         model.compile(tf.keras.optimizers.Adam(lr=2e-5), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-        #model.compile(tf.keras.optimizers.RMSprop(lr=0.001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
         return model
 
@@ -217,6 +224,7 @@ if args['pretrained'] == False:
     ###### In the train splits, we will have a separate validation split.
     """
 
+    #specifying checkpoint directory so trained model is saved after each epoch    
     print("Checkpoint will only be saved for the last epoch.")
     checkpoint_path = "training_relations/cp.ckpt"
     checkpoint_dir = os.path.dirname(checkpoint_path)
