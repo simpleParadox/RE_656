@@ -291,7 +291,10 @@ if args['pretrained'] == False:
             #encode whole train data
             #specify max length parameters for our models
             max_len = 80
+            #Macdonald and Barbosa considered 50 max length for their proposed model
+            #we preserve their reported hyperparameters for replicating their results
             erin_max_len = 50
+    
             print("Encoding input through BERT encoder.")
             if args['model'] == 'erin':
                 train_input = bert_encode(x_t, tokenizer, max_len=erin_max_len)
@@ -306,8 +309,6 @@ if args['pretrained'] == False:
             elif args['model'] =='comemnet-lstm':
                 model = build_model_comemnet_lstm(bert_layer, max_len=max_len)
             elif args['model'] == 'erin':
-                #macdonald and Barbosa considered 50 max length for their proposed model
-                #we preserve their reported hyperparameters for replicating their results
                 model = build_model_erin(bert_layer, max_len=erin_max_len)
             
             model.summary()
