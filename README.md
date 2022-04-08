@@ -7,14 +7,40 @@ The inputs to the models are the entities obtained from the table. The output is
 
 
 
-### Install the following packages.
+### Package installation.
+
+First create a new conda environment using the following (make sure you have [Anaconda](https://www.anaconda.com/) installed.)
+```
+conda create --name comemnet python=3.8
+```
+```
+conda activate comemnet
+```
+Now inside the 'comemnet' conda environment, install the following packages. Follow pip installation guidelines. If using Anaconda package manager, use conda to install packages, but generally pip should work.
+
+Python data science stack.
+```
+pip install pandas
+pip install numpy
+python -m pip install -U matplotlib
+pip install seaborn
+```
+
 1. Tensorflow >=2.5.0
+```
+pip install tensorflow
+```
 2. sentencepiece
+```
+pip install sentencepiece
+`````````
 3. TensorflowHub
+```
+pip install "tensorflow>=2.0.0"
+pip install --upgrade tensorflow-hub
+```
 
-The packages above are in addition to the generic python data science stack (numpy, scipy, pandas etc.).
 
-Follow pip installation guidelines. If using Anaconda package manager, use conda to install packages, but generally pip should work.
 
 ### Instructions to run the code.
 
