@@ -43,17 +43,21 @@ if args['demo']:
 
 # print("Using TensorFlow version: ",tf.__version__)
 
+#checking for GPU device, otherwise model will be trained on CPU
 device_name = tf.test.gpu_device_name()
 print(device_name)
 if device_name != '/device:GPU:0':
   print('GPU device not found, falling back to CPU. Warning, code will run slowly on CPU.')
 print('Found GPU at: {}'.format(device_name))
 
+#data is initially parsed from JSON files
+#now preprocesssing the parsed data for model training
 print("Loading and preprocessing data")
 data_path = 'Processed Data/Input_500_29_relation.tsv'
 
 train_data = pd.read_csv(data_path, encoding='utf-8', sep = '\t')
 
+#filling nan values with empty strings
 train_data.fillna("", inplace = True)
 
 # Shuffle data so that there is a higher chance of the train and test data being from the same distribution.
@@ -65,6 +69,7 @@ sentences_and_labels =  np.array([[' '.join(map(str, row[:-1].tolist())).strip()
 
 sentences = sentences_and_labels[:, 0]
 
+#using label encoder to map relations to integer lablels
 label = preprocessing.LabelEncoder()
 y = label.fit_transform(train_data['relation'])
 label_mappings = integer_mapping = {i: l for i, l in enumerate(label.classes_)}
