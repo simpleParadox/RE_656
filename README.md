@@ -41,11 +41,18 @@ pip install "tensorflow>=2.0.0"
 pip install --upgrade tensorflow-hub
 ```
 
+NOTE: If you want to create a demo for the trained model, you need gradio. No need to install if demo is not required. This is **optional**.
+```
+!pip install -q gradio
+```
 
 
 ### Instructions to run the code.
+Before running the code, make sure you have the pretrained model checkpoint files (if using the pretrained model).
+Download [this](https://drive.google.com/drive/folders/1I_pwygMoS7xofFVMSXwRgsrAMiUUh8T9?usp=sharing) folder from Google Drive. It is a big folder (~few gigabytes). As the default behavior uses the pretrained model, you will need the checkpoints files.
 
-Run main.py as follows.
+Run main.py with the following arguments.
+
 ```
 python main.py
 ```
