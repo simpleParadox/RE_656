@@ -50,7 +50,7 @@ NOTE: If you want to create a demo for the trained model, you need gradio. No ne
 
 ### Instructions to run the code.
 Before running the code, make sure you have the pretrained model checkpoint files (if using the pretrained model).
-Download [this](https://drive.google.com/drive/folders/1I_pwygMoS7xofFVMSXwRgsrAMiUUh8T9?usp=sharing) folder from Google Drive. It is a big folder (~few gigabytes). As the default behavior uses the pretrained model, you will need the checkpoints files.
+Download [this](https://drive.google.com/drive/folders/1I_pwygMoS7xofFVMSXwRgsrAMiUUh8T9?usp=sharing) folder from Google Drive. It is a big folder (~few gigabytes). As the default behavior uses the pretrained model, you will need the checkpoint files.
 
 Run python main.py -h to see the list of arguments.
 ```
