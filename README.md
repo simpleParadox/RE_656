@@ -5,6 +5,7 @@
 Relation Extraction using Convolution and Memory Networks.
 The inputs to the models are the entities and contextual information obtained from the tables and its surroundings. The embeddings go into a CNN (for extracting features) and then into LSTM/BiLSTM which is then fed to a softmax layer for multi-class classification.
 
+Dataset used: https://doi.org/10.7939/DVN/SHL1SL
 
 
 ### Package installation.
