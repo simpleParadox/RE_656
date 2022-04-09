@@ -1,4 +1,4 @@
-# Relation-Extract-CNN-Mem-Net
+# Relation-Extraction CoMemNet
 
 
 ### This repo contains the code for our project in CMPUT 656.
