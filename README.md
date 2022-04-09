@@ -72,6 +72,7 @@ optional arguments:
                         (default=False). If pretrained=True, please download
                         the google drive files mentioned in the README.
 ```
+Run the code using the following line (will use default arguments).
 ```
 python main.py
 ```
