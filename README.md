@@ -1,5 +1,6 @@
-# Relation-Extraction CoMemNet
+# Relation-Extraction CoMemNet 👋
 
+**Future Updates**: ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) -> containerization for easy distribution of code. 
 
 ### This repo contains the code for our project in CMPUT 656.
 Relation Extraction using Convolution and Memory Networks.
