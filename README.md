@@ -102,7 +102,7 @@ python main.py
 | BiLSTM only                          | 86,877     |
 
 
-\* Reimpleted for fair comparison.
+\* Reimplemented for fair comparison.
 
 
 
@@ -117,4 +117,4 @@ Results shown for 5 seeds.
 | CoMemNet-BiLSTM             | 97.89%   | 96.03% | 29 (Max 500)         | 6      |
 | BiLSTM (8 units)            | 98.97%   | 97.97% | 29 (Max 500)         | 6      |
 
-\* Reimpleted for fair comparison.
+\* Reimplemented for fair comparison.
