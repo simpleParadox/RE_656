@@ -82,7 +82,7 @@ python main.py
 
 ### Hyperparameter comparison
 
-| Hyperparameter              | CoMemNet | Macdonald and Barbosa (2020) |
+| Hyperparameter              | Ours     | Macdonald and Barbosa (2020) |
 |:---------------------------:|:--------:|:----------------------------:|
 | CNN Filters                 | 8        | None                         |
 | LSTM/BiLSTM units           | 8        | 1 (only LSTM)                |
