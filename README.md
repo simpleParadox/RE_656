@@ -2,7 +2,9 @@
 
 **Future Updates**: ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) -> containerization for easy distribution of code. 
 
+
 ### Tabular Relation Extraction using Convolution and Memory Networks.
+
 The inputs to the models are the entities and contextual information obtained from the tables and its surroundings. The embeddings go into a CNN (for extracting features) and then into LSTM/BiLSTM which is then fed to a softmax layer for multi-class classification.
 
 Dataset used: https://doi.org/10.7939/DVN/SHL1SL
@@ -101,7 +103,11 @@ python main.py
 | BiLSTM only                          | 86,877     |
 
 
+<<<<<<< HEAD
 \* Reimplemented for fair comparison.
+=======
+\* Reimpleted for fair comparison.
+>>>>>>> master
 
 
 
@@ -116,4 +122,8 @@ Results shown for 5 seeds.
 | CoMemNet-BiLSTM             | 97.89%   | 96.03% | 29 (Max 500)         | 6      |
 | BiLSTM (8 units)            | 98.97%   | 97.97% | 29 (Max 500)         | 6      |
 
+<<<<<<< HEAD
 \* Reimplemented for fair comparison.
+=======
+\* Reimpleted for fair comparison.
+>>>>>>> master
