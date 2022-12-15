@@ -122,8 +122,4 @@ Results shown for 5 seeds.
 | CoMemNet-BiLSTM             | 97.89%   | 96.03% | 29 (Max 500)         | 6      |
 | BiLSTM (8 units)            | 98.97%   | 97.97% | 29 (Max 500)         | 6      |
 
-<<<<<<< HEAD
 \* Reimplemented for fair comparison.
-=======
-\* Reimpleted for fair comparison.
->>>>>>> master
