@@ -1,4 +1,4 @@
-# Relation-Extraction on Wikipedia Tables 👋
+# Relation Extraction on Wikipedia Tables 👋
 
 **Future Updates**: ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) -> containerization for easy distribution of code. 
 
