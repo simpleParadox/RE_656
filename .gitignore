@@ -1,0 +1,13 @@
+out_files/
+Processed Data/
+Processed_Input 2.tsv
+Seed Results/
+*.out
+*.txt
+*.sh
+test_tf.py
+bert_layer/
+training_relations/
+best_model_weight/
+erins_model.py
+*.ipynb
