@@ -117,9 +117,8 @@ Results shown for 5 seeds.
 | CNN Filters                 | Accuracy | F1     | #Relations (#Tables) | Epochs |
 |:---------------------------:|:--------:|:------:|:--------------------:|:------:|
 | Macdonald and Barbosa 2020  | 92%      | 95%    | 29 (All)             | 50     |
-| Macdonald and Barbosa 2020* | 91.05%   | 84.80% | 29 (Max 500)         | 6      |
-| CoMemNet-LSTM               | 97.51%   | 95.41% | 29 (Max 500)         | 6      |
-| CoMemNet-BiLSTM             | 97.89%   | 96.03% | 29 (Max 500)         | 6      |
-| BiLSTM (8 units)            | 98.97%   | 97.97% | 29 (Max 500)         | 6      |
+| CNN-LSTM                    | 97.57%   | 91.44% | 29 (All)             | 40     |
+| CoMemNet-BiLSTM             | 97.80%   | 92.46% | 29 (All)             | 40     |
+| BiLSTM (8 units)            | 98.19%   | 94.35% | 29 (All)             | 40     |
 
 \* Reimplemented for fair comparison.
