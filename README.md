@@ -77,9 +77,9 @@ python bilstm_only.py #for BiLSTM-only
 
 | Model                                | Parameters |
 |:------------------------------------:|:----------:|
-| Macdonald and Barbosa* (1 LSTM only) | 4,559      |
-| CNN + LSTM (CoMemNet - LSTM)         | 40,581     |
-| CNN + BiLSTM  (CoMemNet - BiLSTM)    | 50,405     |
+| Macdonald and Barbosa                | 4,559      |
+| CNN + LSTM                           | 40,581     |
+| CNN + BiLSTM                         | 50,405     |
 | BiLSTM only                          | 86,877     |
 
 
