@@ -55,9 +55,9 @@ Before running the code, make sure you have the pretrained model checkpoint file
 Download [this](https://drive.google.com/drive/folders/1I_pwygMoS7xofFVMSXwRgsrAMiUUh8T9?usp=sharing) folder from Google Drive. It is a big folder (~few gigabytes). As the default behavior uses the pretrained model, you will need the checkpoint files.
 
 ```
-python cmput656_full_data.py for CNN-BiLSTM
-python cnn_plus_lstm.py for CNN-LSTM
-python bilstm_only.py for BiLSTM-only
+python cmput656_full_data.py #for CNN-BiLSTM
+python cnn_plus_lstm.py #for CNN-LSTM
+python bilstm_only.py #for BiLSTM-only
 ```
 
 ### Hyperparameter comparison
