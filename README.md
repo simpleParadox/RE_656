@@ -103,13 +103,6 @@ python main.py
 | BiLSTM only                          | 86,877     |
 
 
-<<<<<<< HEAD
-\* Reimplemented for fair comparison.
-=======
-\* Reimpleted for fair comparison.
->>>>>>> master
-
-
 
 ### Results
 Results shown for 5 seeds.
