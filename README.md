@@ -87,7 +87,7 @@ python bilstm_only.py #for BiLSTM-only
 ### Results
 Results shown for 5 seeds.
 
-| CNN Filters                 | Accuracy | F1     | #Relations (#Tables) | Epochs |
+| Model                       | Accuracy | F1     | #Relations (#Tables) | Epochs |
 |:---------------------------:|:--------:|:------:|:--------------------:|:------:|
 | Macdonald and Barbosa 2020  | 92%      | 95%    | 29 (All)             | 50     |
 | CNN-LSTM                    | 97.57%   | 91.44% | 29 (All)             | 40     |
