@@ -111,7 +111,5 @@ Results shown for 5 seeds.
 |:---------------------------:|:--------:|:------:|:--------------------:|:------:|
 | Macdonald and Barbosa 2020  | 92%      | 95%    | 29 (All)             | 50     |
 | CNN-LSTM                    | 97.57%   | 91.44% | 29 (All)             | 40     |
-| CoMemNet-BiLSTM             | 97.80%   | 92.46% | 29 (All)             | 40     |
+| CNN-BiLSTM                  | 97.80%   | 92.46% | 29 (All)             | 40     |
 | BiLSTM (8 units)            | 98.19%   | 94.35% | 29 (All)             | 40     |
-
-\* Reimplemented for fair comparison.
