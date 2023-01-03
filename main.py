@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-"""
-@Author: Rohan Saha and Arif Shahriar
-"""
-
-
 import pandas as pd
 import os
 import numpy as np
